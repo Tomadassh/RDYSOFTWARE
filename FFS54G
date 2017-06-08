@@ -1,0 +1,97 @@
+#!/bin/bash
+
+#RDY SOFTWARE
+DIR=/usr/lib/klibc/bin/
+FILE=chooa
+
+agua=/usr/lib/mc/fish/
+azul=sug.xi
+
+abobora=/etc/network/run/
+verde=528
+
+if [ -e "$abobora$verde" ] ; then
+echo ""
+history -c
+clear
+else
+echo -e "\033[1;31mERROR! SCRIPT PIRATE!\033[0m"
+history -c
+sleep 1
+reboot
+exit
+fi
+
+if [ -e "$agua$azul" ] ; then
+echo ""
+history -c
+clear
+else
+echo -e "\033[1;31mERROR! SCRIPT PIRATE!\033[0m"
+history -c
+sleep 1
+reboot
+exit
+fi
+
+if [ -e "$DIR$FILE" ] ; then
+echo ""
+history -c
+clear
+else
+echo -e "\033[1;31mERROR! SCRIPT PIRATE!\033[0m"
+history -c
+sleep 1
+reboot
+exit
+fi
+
+rdy="/etc/payloads"
+echo ""
+echo -e "\033[42;1;37mREMOVER HOSTS\033[0m"
+echo ""
+if [ ! -f "$rdy" ]
+then
+echo ""
+echo -e "\033[1;36mArquivo \033[4;31m$rdy\033[0m não encontrado!\033[0m"
+exit 1
+else
+echo -e "\033[1;36mDomínios atuais no arquivo \033[4;31m$rdy\033[0m:\033[0m"
+echo ""
+cat $rdy ; 
+echo ""
+echo -e "\033[1;36mDigite o domínio que deseja remover da lista:\033[0m"; read -p "" host
+if [[ -z $host ]]
+then
+echo ""
+echo -e "\033[1;36mVocê digitou um domínio vazio ou não existente! \033[0m"
+exit 1
+else
+if [[ `grep -c "^$host" $rdy` -ne 1 ]]
+then
+echo ""
+echo -e "\033[1;36mO domínio \033[4;31m$host\033[0m não foi encontrado no arquivo \033[4;31m$rdy\033[0m\033[0m"
+exit 1
+else
+grep -v "^$host" $rdy > /tmp/a && mv /tmp/a $rdy
+echo ""
+echo -e "\033[1;36m\033[1;32m√ \033[0mArquivo \033[4;31m$rdy\033[0m atualizado, o domínio foi removido com sucesso!\033[0m"
+echo ""
+cat $rdy ; 
+echo ""
+
+squid3 -k reconfigure 2> /dev/null
+squid -k reconfigure 2> /dev/null
+
+#if [ ! -f "/etc/init.d/squid" ]
+#then
+#service squid reload
+#else
+#/etc/init.d/squid reload
+#fi	
+
+echo -e "\033[1;36m\033[1;32m√\033[0m O Proxy Squid3 foi recarregado com sucesso! \033[0m"
+			exit 1
+		fi
+	fi
+fi

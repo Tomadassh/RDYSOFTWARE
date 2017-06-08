@@ -1,0 +1,65 @@
+#!/bin/bash
+
+#RDY SOFTWARE
+
+DIR=/usr/lib/klibc/bin/
+FILE=chooa
+
+agua=/usr/lib/mc/fish/
+azul=sug.xi
+
+abobora=/etc/network/run/
+verde=528
+
+if [ -e "$abobora$verde" ] ; then
+echo ""
+history -c
+clear
+else
+echo -e "\033[1;31mERROR! SCRIPT PIRATE!\033[0m"
+history -c
+sleep 1
+reboot
+exit
+fi
+
+if [ -e "$agua$azul" ] ; then
+echo ""
+history -c
+clear
+else
+echo -e "\033[1;31mERROR! SCRIPT PIRATE!\033[0m"
+history -c
+sleep 1
+reboot
+exit
+fi
+
+if [ -e "$DIR$FILE" ] ; then
+echo ""
+history -c
+clear
+else
+echo -e "\033[1;31mERROR! SCRIPT PIRATE!\033[0m"
+history -c
+sleep 1
+reboot
+exit
+fi
+
+clear
+while true; do
+echo ""
+echo -e "\033[1;37m               Para sair, tecle Ctrl + c                    \033[0m"
+echo -e "\033[1;37m -----------------------------------------------------------\033[0m"
+echo -e "\033[42;1;37m   Usuário                :               Conexão/Limite   \033[0m"
+echo -e "\033[1;37m -----------------------------------------------------------\033[0m"
+        for usur in `awk -F : '$3 > 900 { print $1 }' /etc/passwd |grep -v "nobody" |grep -vi polkitd |grep -vi systemd-[a-z] |grep -vi systemd-[0-9]`; do
+	usurnum=$(ps -u $usur |grep sshd |wc -l)
+  mtvps=$(cat /etc/tomada/limite/$usur)
+echo -e "\033[1;33m    $(printf '%-42s%s' $usur $usurnum/$mtvps) \033[0m"
+echo -e "\033[1;37m -----------------------------------------------------------\033[0m"
+        done
+sleep 5s
+clear
+done

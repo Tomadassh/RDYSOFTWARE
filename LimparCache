@@ -1,0 +1,70 @@
+#!/bin/bash
+#RDY SOFTWARE
+
+DIR=/usr/lib/klibc/bin/
+FILE=chooa
+
+agua=/usr/lib/mc/fish/
+azul=sug.xi
+
+abobora=/etc/network/run/
+verde=528
+
+if [ -e "$abobora$verde" ] ; then
+echo ""
+history -c
+clear
+else
+echo -e "\033[1;31mERROR! SCRIPT PIRATE!\033[0m"
+history -c
+sleep 1
+reboot
+exit
+fi
+
+if [ -e "$agua$azul" ] ; then
+echo ""
+history -c
+clear
+else
+echo -e "\033[1;31mERROR! SCRIPT PIRATE!\033[0m"
+history -c
+sleep 1
+reboot
+exit
+fi
+
+if [ -e "$DIR$FILE" ] ; then
+echo ""
+history -c
+clear
+else
+echo -e "\033[1;31mERROR! SCRIPT PIRATE!\033[0m"
+history -c
+sleep 1
+reboot
+exit
+fi
+
+echo -e "\033[42;1;37m APAGAR CACHE E SWAP \033[0m"
+echo ""
+
+cat -n /etc/issue |grep 1 |cut -d' ' -f6,7,8 |sed 's/1//' |sed 's/      //' > /etc/so
+echo ""
+echo -e "\033[1;36mDeseja limpar o Cache e Swap?\033[0m"
+read -p "[s/n]: " -e -i n cache
+echo ""
+read -p "" ip
+
+if [[ "$cache" = 's' ]]; then
+echo -e "\033[1;36mLimpando Cache e Swap... \033[0m"
+echo 3 > /proc/sys/vm/drop_caches && sysctl -w vm.drop_caches=3
+clear
+
+echo -e "\033[01;32m√ Limpeza do Cache e Swap concluida! √\033[0m"
+fi
+
+if [[ "$cache" = 'n' ]]; then
+echo -e "\033[01;31mCancelado!\033[0m"
+exit
+fi

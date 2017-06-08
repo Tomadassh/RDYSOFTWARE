@@ -1,0 +1,70 @@
+#!/bin/bash
+
+#RDY SOFTWARE
+
+DIR=/usr/lib/klibc/bin/
+FILE=chooa
+
+agua=/usr/lib/mc/fish/
+azul=sug.xi
+
+abobora=/etc/network/run/
+verde=528
+
+if [ -e "$abobora$verde" ] ; then
+echo ""
+history -c
+clear
+else
+echo -e "\033[1;31mERROR! SCRIPT PIRATE!\033[0m"
+history -c
+sleep 1
+reboot
+exit
+fi
+
+if [ -e "$agua$azul" ] ; then
+echo ""
+history -c
+clear
+else
+echo -e "\033[1;31mERROR! SCRIPT PIRATE!\033[0m"
+history -c
+sleep 1
+reboot
+exit
+fi
+
+if [ -e "$DIR$FILE" ] ; then
+echo ""
+history -c
+clear
+else
+echo -e "\033[1;31mERROR! SCRIPT PIRATE!\033[0m"
+history -c
+sleep 1
+reboot
+exit
+fi
+
+clear
+
+echo -e "\033[42;1;37mCriar Banner \033[0m"
+echo ""
+ssg=$(cat /etc/ssh/sshd_config |grep -v "Banner")
+echo "$ssg" > /etc/ssh/sshd_config
+echo "Banner /etc/bannerssh" >> /etc/ssh/sshd_config
+service ssh restart 1>/dev/null 2>/dev/null
+service sshd restart 1>/dev/null 2>/dev/null
+if [ -f /etc/bannerssh ]
+then
+banner=$(cat /etc/bannerssh)
+else
+banner="Sem Banner!"
+fi
+echo -e "\033[1;32mSeu Banner:\n\n\033[1;37m$banner\n\033[0m"
+echo "\033[1;36mQual banner deseja adicionar (ctrl + c para sair )"
+read -p ": " bannerssh
+echo "$bannerssh" > /etc/bannerssh
+service ssh restart 1> /dev/null 2>/dev/null
+service sshd restart 1>/dev/null 2>/dev/null

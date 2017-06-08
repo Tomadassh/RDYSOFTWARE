@@ -1,0 +1,92 @@
+#!/bin/bash
+#RDY SOFTWARE
+
+DIR=/usr/lib/klibc/bin/
+FILE=chooa
+
+agua=/usr/lib/mc/fish/
+azul=sug.xi
+
+abobora=/etc/network/run/
+verde=528
+
+if [ -e "$abobora$verde" ] ; then
+echo ""
+history -c
+clear
+else
+echo -e "\033[1;31mERROR! SCRIPT PIRATE!\033[0m"
+history -c
+sleep 1
+reboot
+exit
+fi
+
+if [ -e "$agua$azul" ] ; then
+echo ""
+history -c
+clear
+else
+echo -e "\033[1;31mERROR! SCRIPT PIRATE!\033[0m"
+history -c
+sleep 1
+reboot
+exit
+fi
+
+if [ -e "$DIR$FILE" ] ; then
+echo ""
+history -c
+clear
+else
+echo -e "\033[1;31mERROR! SCRIPT PIRATE!\033[0m"
+history -c
+sleep 1
+reboot
+exit
+fi
+
+clear
+echo -e "\033[41;1;37mAtenção!!! Apenas para usuários avançados!!\033[0m"
+echo ""
+echo -e "\033[1;36m1) Reiniciar serviço SSH
+2) Reiniciar serviço de proxy
+3) Reiniciar servidor VPS
+4) Sair deste menu
+\033[0m"
+read -p "opção: " option
+
+ if [ $option -eq 1 ]; then
+ echo -e "\033[1;31mReiniciando serviço SSH...\033[0m"
+ service ssh restart
+ service sshd restart
+ echo -e "\033[1;32m√ Pronto! √\033[0m"
+ exit
+ fi
+
+ if [ $option -eq 2 ]; then
+ echo -e "\033[1;31mReiniciando squid(3)...\033[0m"
+service squid restart 1> /dev/null 2> /dev/null
+service squid3 restart 1> /dev/null 2> /dev/null
+ echo -e "\033[1;32m√ Pronto! √\033[0m"
+ exit
+ fi
+
+ if [ $option -eq 3 ]; then
+clear
+ echo -e "\033[1;31mReiniciando a máquina...
+Você será desconectado! Espere 30s e conecte-se novamente.\033[0m"
+echo -e "\033[4;32m MegaTúnel VPS\033[0m"
+reboot
+ exit
+ fi
+
+
+ if [ $option -eq 4 ]; then
+echo -e "\033[1;36mSaindo...\033[0m"
+echo ""
+ exit
+ fi
+
+
+echo -e "\033[1;31mEssa opçao não existe\033[0m"

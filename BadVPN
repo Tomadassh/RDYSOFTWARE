@@ -1,0 +1,84 @@
+#!/bin/bash
+
+#RDY SOFTWARE
+
+DIR=/usr/lib/klibc/bin/
+FILE=chooa
+
+agua=/usr/lib/mc/fish/
+azul=sug.xi
+
+abobora=/etc/network/run/
+verde=528
+
+if [ -e "$abobora$verde" ] ; then
+echo ""
+history -c
+clear
+else
+echo -e "\033[1;31mERROR! SCRIPT PIRATE!\033[0m"
+history -c
+sleep 1
+reboot
+exit
+fi
+
+if [ -e "$agua$azul" ] ; then
+echo ""
+history -c
+clear
+else
+echo -e "\033[1;31mERROR! SCRIPT PIRATE!\033[0m"
+history -c
+sleep 1
+reboot
+exit
+fi
+
+if [ -e "$DIR$FILE" ] ; then
+echo ""
+history -c
+clear
+else
+echo -e "\033[1;31mERROR! SCRIPT PIRATE!\033[0m"
+history -c
+sleep 1
+reboot
+exit
+fi
+clear
+echo ""
+
+echo -e "\033[42;1;37mFERRAMENTAS BADVPN\033[0m"
+echo ""
+echo -e "\033[1;36m1) Iniciar BadVPN
+2) Parar BadVPN
+3) Sair\033[0m"
+read -p "Opção: " option
+
+echo ""
+if [ $option -eq 1 ]; then
+
+
+#wget #https://raw.githubusercontent.com/RicKbrL/VpsConf/master/badvpn.sh && bash badvpn.sh
+#
+screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 1000 --max-connections-for-client 10 > /dev/null
+
+echo -e "\033[1;32m√ BadVPN iniciado e rodando em sessão screen √ \033[0m"
+fi
+
+if [ $option -eq 2 ]; then
+echo -e "\033[1;36mParando BadVPN... \033[0m"
+echo ""
+
+kill -9 $(ps -ef | grep badvpn | awk '{print $2}') > /dev/null 2> /dev/null
+
+sleep 2
+echo -e "\033[1;32m√ BadVPN parado!\033[0m"
+
+fi
+
+if [ $option -eq 3 ]; then
+exit
+fi
+

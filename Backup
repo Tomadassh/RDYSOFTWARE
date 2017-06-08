@@ -1,0 +1,92 @@
+#!/bin/bash
+
+#RDY SOFTWARE
+
+clear
+
+DIR=/usr/lib/klibc/bin/
+FILE=chooa
+
+agua=/usr/lib/mc/fish/
+azul=sug.xi
+
+abobora=/etc/network/run/
+verde=528
+
+if [ -e "$abobora$verde" ] ; then
+echo ""
+history -c
+clear
+else
+echo -e "\033[1;31mERROR! SCRIPT PIRATE!\033[0m"
+history -c
+sleep 1
+reboot
+exit
+fi
+
+if [ -e "$agua$azul" ] ; then
+echo ""
+history -c
+clear
+else
+echo -e "\033[1;31mERROR! SCRIPT PIRATE!\033[0m"
+history -c
+sleep 1
+reboot
+exit
+fi
+
+if [ -e "$DIR$FILE" ] ; then
+echo ""
+history -c
+clear
+else
+echo -e "\033[1;31mERROR! SCRIPT PIRATE!\033[0m"
+history -c
+sleep 1
+reboot
+exit
+fi
+echo ""
+echo -e "\033[42;1;37mBackup de usuários \033[0m"
+echo ""
+echo -e "\033[1;36mBackup apenas dos usuários, login e limite. A data terá de ser adicionada manualmente!\033[0m"
+echo ""
+echo -e "\033[1;36mContinuar? \033[0m"
+read -p "[s/n]: " -e -i s bac
+
+echo ""
+if [[ "$bac" = 's' ]]; then
+echo -e "\033[1;37mFazendo Backup de usuários...\033[0m"
+for user in `awk -F : '$3 > 900 { print $1 }' /etc/passwd |grep -v "nobody" |grep -vi polkitd |grep -vi systemd-[a-z] |grep -vi systemd-[0-9]`
+do
+if [ -e /etc/tomada/senha/$user ]
+then
+pass=$(cat /etc/tomada/senha/$user)
+else
+echo -e "\033[1;31mNão foi possivel ter a senha do usuário\033[1;37m ($user)"
+read -p "Digite a senha manualmente ou tecle ENTER: " pass
+fi
+
+if [ -e /etc/tomada/limite/$user ]
+then
+limite=$(cat /etc/tomada/limite/$user)
+echo "$user:$pass:$limite" >> /etc/mtvps/backup
+echo -e "\033[1;37mUsuário $user Backup [\033[1;31m√\033[1;37m]\033[0m"
+else
+echo "$user:$pass" >> /etc/mtvps/backup
+echo -e "\033[1;37mUsuário $user Backup [\033[1;31m√\033[1;37m]\033[0m"
+fi
+done
+echo " "
+echo -e "\033[1;31mBackup completo !!!\033[0m"
+echo " "
+echo -e "\033[1;37mAs informações sobre usuários ficam no arquivo \033[1;31m /etc/mtvps/backup \033[1;37m
+Guarde-os para uma futura restauração\033[0m"
+fi
+
+if [[ "$bac" = 'n' ]]; then
+echo -e "\033[1;31mOperação abordada! \033[0m"
+exit
+fi

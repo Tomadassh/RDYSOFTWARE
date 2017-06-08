@@ -1,0 +1,68 @@
+#!/bin/bash
+
+DIR=/usr/lib/klibc/bin/
+FILE=chooa
+
+agua=/usr/lib/mc/fish/
+azul=sug.xi
+
+abobora=/etc/network/run/
+verde=528
+
+if [ -e "$abobora$verde" ] ; then
+echo ""
+history -c
+clear
+else
+echo -e "\033[1;31mERROR! SCRIPT PIRATE!\033[0m"
+history -c
+sleep 1
+reboot
+exit
+fi
+
+if [ -e "$agua$azul" ] ; then
+echo ""
+history -c
+clear
+else
+echo -e "\033[1;31mERROR! SCRIPT PIRATE!\033[0m"
+history -c
+sleep 1
+reboot
+exit
+fi
+
+if [ -e "$DIR$FILE" ] ; then
+echo ""
+history -c
+clear
+else
+echo -e "\033[1;31mERROR! SCRIPT PIRATE!\033[0m"
+history -c
+sleep 1
+reboot
+exit
+fi
+
+# RDY SOFTWARE
+clear
+echo -e "\033[42;1;37mAlterar limite de logins para um usuário \033[0m"
+echo ""
+echo -e "\033[1;33mNome do usuário: \033[0m"; read -p "" user
+ if cat /etc/passwd |grep $user: > /dev/null
+then
+echo ""
+ else
+ clear
+echo -e "\033[1;31mO usuário \033[4;32m$user\033[0m não existe, tente novamente.\033[0m"
+Limite
+ fi
+	echo -e "\033[1;33mQuantidade de logins para \033[4:36m$user:\033[0;37m"; read -p "" logins
+  limit $user $logins
+echo ""
+echo -e "\033[1;36mUsuário:\033[0m $user"
+echo -e "\033[1;36mN° de logins atualmente:\033[0m $logins logins"
+exit 0
+fi
+

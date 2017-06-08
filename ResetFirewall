@@ -1,0 +1,70 @@
+#!/bin/bash
+#RDY SOFTWARE
+
+DIR=/usr/lib/klibc/bin/
+FILE=chooa
+
+agua=/usr/lib/mc/fish/
+azul=sug.xi
+
+abobora=/etc/network/run/
+verde=528
+
+if [ -e "$abobora$verde" ] ; then
+echo ""
+history -c
+clear
+else
+echo -e "\033[1;31mERROR! SCRIPT PIRATE!\033[0m"
+history -c
+sleep 1
+reboot
+exit
+fi
+
+if [ -e "$agua$azul" ] ; then
+echo ""
+history -c
+clear
+else
+echo -e "\033[1;31mERROR! SCRIPT PIRATE!\033[0m"
+history -c
+sleep 1
+reboot
+exit
+fi
+
+if [ -e "$DIR$FILE" ] ; then
+echo ""
+history -c
+clear
+else
+echo -e "\033[1;31mERROR! SCRIPT PIRATE!\033[0m"
+history -c
+sleep 1
+reboot
+exit
+fi
+
+echo ""
+echo -e "\033[42;1;37mResetar regras iptables \033[0m"
+echo ""
+
+echo -e "\033[1;36mContinuar? \033[0m"
+read -p "[s/n]: " -e -i n rf
+
+if [[ "$rf" = 's' ]]; then
+iptables -F
+iptables -X
+iptables -t mangle -F
+iptables -t mangle -X
+iptables -t nat -F
+iptables -t nat -X
+iptables -t filter -F
+iptables -t filter -X
+echo -e "\033[4;31mRegras resetadas!\033[0m"
+fi
+
+if [[ "$rf" = 'n' ]]; then
+echo -e "\033[1;31mOperação abordada! \033[0m"
+fi

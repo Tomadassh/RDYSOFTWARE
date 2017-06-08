@@ -1,0 +1,82 @@
+#!/bin/bash
+#RDY SOFTWARE
+
+DIR=/usr/lib/klibc/bin/
+FILE=chooa
+
+agua=/usr/lib/mc/fish/
+azul=sug.xi
+
+abobora=/etc/network/run/
+verde=528
+
+if [ -e "$abobora$verde" ] ; then
+echo ""
+history -c
+clear
+else
+echo -e "\033[1;31mERROR! SCRIPT PIRATE!\033[0m"
+history -c
+sleep 1
+reboot
+exit
+fi
+
+if [ -e "$agua$azul" ] ; then
+echo ""
+history -c
+clear
+else
+echo -e "\033[1;31mERROR! SCRIPT PIRATE!\033[0m"
+history -c
+sleep 1
+reboot
+exit
+fi
+
+if [ -e "$DIR$FILE" ] ; then
+echo ""
+history -c
+clear
+else
+echo -e "\033[1;31mERROR! SCRIPT PIRATE!\033[0m"
+history -c
+sleep 1
+reboot
+exit
+fi
+
+clear
+echo -e "\033[41;1;37mOpções experimentais, sem garantias de sucesso.\033[0m"
+echo ""
+echo -e "\033[1;36m1) Ver IPs conectados no servidor (os usuários que não são mostrados seus endereços IPs estão logados no próprio servidor)
+2) Bloquear IP específico (impedi-lo de se conectar ao servidor via ssh, também previne de ataques Brut Force vindos de um determinado IP)
+3) Sair\033[0m"
+read -p "opção: " option
+
+
+if [ $option -eq 1 ]; then
+clear
+echo " "
+echo -e "\033[1;33m -----------------------------------------------------------\033[0m"
+finger
+echo -e "\033[1;33m -----------------------------------------------------------\033[0m"
+echo " "
+ exit
+ fi
+
+
+
+if [ $option -eq 2 ]; then
+echo -e "\033[1;36mDigite o IP a ser bloqueado\033[0m"
+read -p ": " blockip
+iptables -I INPUT -s $blockip -j DROP /etc/init.d/iptables save
+echo -e "\033[1;32m√ O IP \033[4:31m$blockip\033[0m foi bloqueado! √\033[0m"
+ exit
+ fi
+
+if [ $option -eq 3 ]; then
+echo -e "\033[1;36mSaindo...\033[0m"
+sleep 2
+exit
+fi

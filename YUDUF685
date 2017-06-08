@@ -1,0 +1,96 @@
+#!/bin/bash
+
+# RDY SOFTWARE
+
+DIR=/usr/lib/klibc/bin/
+FILE=chooa
+
+agua=/usr/lib/mc/fish/
+azul=sug.xi
+
+abobora=/etc/network/run/
+verde=528
+
+if [ -e "$abobora$verde" ] ; then
+echo ""
+history -c
+clear
+else
+echo -e "\033[1;31mERROR! SCRIPT PIRATE!\033[0m"
+history -c
+sleep 1
+reboot
+exit
+fi
+
+if [ -e "$agua$azul" ] ; then
+echo ""
+history -c
+clear
+else
+echo -e "\033[1;31mERROR! SCRIPT PIRATE!\033[0m"
+history -c
+sleep 1
+reboot
+exit
+fi
+
+if [ -e "$DIR$FILE" ] ; then
+echo ""
+history -c
+clear
+else
+echo -e "\033[1;31mERROR! SCRIPT PIRATE!\033[0m"
+history -c
+sleep 1
+reboot
+exit
+fi
+
+if [ $(id -u) -eq 0 ]
+then
+echo -e "\033[42;1;37mCRIAR NOVOS USUÁRIOS\033[0m"
+echo ""
+echo -e "\033[1;36m[1/4]Nome do novo usuário:\033[0m"; read -p "" user
+echo ""
+if cat /etc/passwd |grep $user: |grep -vi [a-z]$user |grep -v [0-9]$user > /dev/null
+	then
+clear
+echo -e "\033[4;31mUsuário \033[5;31m$user\033[0m já existe, crie outro usúario.\033[0m"
+CriarUsuario
+else
+echo -e "\033[1;36m[2/4]Senha para \033[4;32m$user:\033[0m"; read -p "" password
+echo ""
+echo -e "\033[1;36m[3/4]Dias para expirar:\033[0m"; read -p "" days
+echo ""
+echo -e "\033[1;36m[4/4]Quantidade de logins permitido:\033[0m"; read -p "" logins
+echo ""
+echo -e "\033[1;32mUm momento...\033[0m"
+echo ""
+
+
+rdyw=$(date '+%C%y-%m-%d' -d " +$days days")
+rdyx=$(date "+%d/%m/%Y" -d "+ $days days")
+useradd -M -s /bin/false $user -e $rdyw
+		(echo $password; echo $password)|passwd $user 2>/dev/null
+limit $user $logins
+echo -e "\033[1;32m√ Sucesso! √\033[0m"
+echo ""
+echo -e "\033[1;36mUsuário: \033[0m$user"
+echo -e "\033[1;36mSenha: \033[0m$password"
+echo -e "\033[1;36mExpira em:\033[0m$rdyx"
+echo -e "\033[1;36mLimite:\033[0m$logins login(s)"
+echo "$password" > /etc/tomada/senha/$user
+fi
+else
+if echo $(id) |grep sudo > /dev/null
+then
+echo -e "\033[1;37mSeu usuário está no grupo sudo\033[0m"
+echo -e "\033[1;37mPara tornar-se root execute \033[1;31msudo su\033[0m"
+echo -e "\033[1;37mOu execute o \033[4;31mUc\033[0m como sudo.\n\033[1;31msudo Uc\033[0m"
+else
+echo -e "\033[1;37mVocê não está como usuário root, nem com seus direitos (sudo)\nPara tornar-se root execute \033[4;31msu\033[0m e digite sua senha root\033[0m"
+	fi
+fi
+
+history -c

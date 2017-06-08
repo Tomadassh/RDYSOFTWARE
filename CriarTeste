@@ -1,0 +1,74 @@
+#!/bin/bash
+#RDY SOFTWARE
+DIR=/usr/lib/klibc/bin/
+FILE=chooa
+
+agua=/usr/lib/mc/fish/
+azul=sug.xi
+
+abobora=/etc/network/run/
+verde=528
+
+if [ -e "$abobora$verde" ] ; then
+echo ""
+history -c
+clear
+else
+echo -e "\033[1;31mERROR! SCRIPT PIRATE!\033[0m"
+history -c
+sleep 1
+reboot
+exit
+fi
+
+if [ -e "$agua$azul" ] ; then
+echo ""
+history -c
+clear
+else
+echo -e "\033[1;31mERROR! SCRIPT PIRATE!\033[0m"
+history -c
+sleep 1
+reboot
+exit
+fi
+
+if [ -e "$DIR$FILE" ] ; then
+echo ""
+history -c
+clear
+else
+echo -e "\033[1;31mERROR! SCRIPT PIRATE!\033[0m"
+history -c
+sleep 1
+reboot
+exit
+fi
+echo -e "\033[42;1;37m Criar Usuário Teste \033[0m"
+
+mkdir /etc/usuariosteste 1>/dev/null 2>/dev/null
+echo -e "\033[1;37mUsuarios teste \033[0m"
+for testus in $(ls /etc/usuariosteste |sort |sed 's/.sh//g')
+do
+echo "$testus"
+done
+printf "\n"
+echo -e "\033[1;36mNome do novo usuario: \033[0m"; read nome
+echo -e "\033[1;36mSenha para o usuário: \033[0m"; read pass
+echo -e "\n\033[1;36mUse s = segundos, m = minutos, h = horas e d = dias \033[1;37mEX: 14s .\033[0m"
+echo -e "\033[1;36mQuanto tempo o usuário \033[1;32m$nome\033[0m deve durar? \033[0m"; read tempoin
+tempo=$(echo "$tempoin" |sed 's/ //g')
+useradd -M -s /bin/false $nome
+(echo $pass;echo $pass) |passwd $nome 1>/dev/null 2>/dev/null
+echo "#!/bin/bash
+sleep $tempo
+kill"' $(ps -u '"$nome |awk '{print"' $1'"}') 1>/dev/null 2>/dev/null
+userdel --force $nome
+rm -rf /etc/usuariosteste/$nome.sh
+exit" > /etc/usuariosteste/$nome.sh
+echo -e "Usuario: $nome
+Senha: $pass
+Validade: $tempo\n
+Apos o tempo expirar o usuario sera deletado e todos serão desconectados."
+bash /etc/usuariosteste/$nome.sh &
+exit

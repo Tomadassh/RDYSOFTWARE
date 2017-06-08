@@ -1,0 +1,81 @@
+#!/bin/bash
+
+#RDY SOFTWARE
+
+DIR=/usr/lib/klibc/bin/
+FILE=chooa
+
+agua=/usr/lib/mc/fish/
+azul=sug.xi
+
+abobora=/etc/network/run/
+verde=528
+
+if [ -e "$abobora$verde" ] ; then
+echo ""
+history -c
+clear
+else
+echo -e "\033[1;31mERROR! SCRIPT PIRATE!\033[0m"
+history -c
+sleep 1
+reboot
+exit
+fi
+
+if [ -e "$agua$azul" ] ; then
+echo ""
+history -c
+clear
+else
+echo -e "\033[1;31mERROR! SCRIPT PIRATE!\033[0m"
+history -c
+sleep 1
+reboot
+exit
+fi
+
+if [ -e "$DIR$FILE" ] ; then
+echo ""
+history -c
+clear
+else
+echo -e "\033[1;31mERROR! SCRIPT PIRATE!\033[0m"
+history -c
+sleep 1
+reboot
+exit
+fi
+
+arq=$1
+clear
+echo -e "\033[1;37mRestaurando usuários...\033[0m"
+
+for user in `cat $arq`
+do
+usuario=$(echo "$user" |awk -F : '{print $1}')
+senha=$(echo "$user" |awk -F : '{print $2}')
+
+if cat /etc/passwd |grep $usuario: 1> /dev/null 2>/dev/null
+then
+echo " " > /dev/null
+else
+echo "$user" |cut -d: -f3 1> /dev/null 2>/dev/null
+  if [ $? = 0 ]
+  then
+  limite=$(echo "$user" |awk -F : '{print $3}')
+   data=$(echo "$data" |awk -F : '{print $4}')
+  useradd -M -s /bin/false $usuario
+  (echo $senha ; echo $senha) | passwd $usuario > /dev/null 2> /dev/null
+  limit $usuario $limite 1> /dev/null 2> /dev/null
+  echo "$senha" > /etc/tomada/senha/$usuario
+  chage -E $data $usuario 2> /dev/null
+  else
+  chage -E $data $usuario 2> /dev/null
+  useradd -M -s /bin/false $usuario
+  (echo $senha ; echo $senha) | passwd $usuario > /dev/null 2> /dev/null
+  echo "$senha" > /etc/tomada/senha/$usuario
+  fi
+  echo -e "\033[1;37mUsuario: \033[1;31m$usuario \033[1;37mBackup: [\033[1;31m√\033[1;37m]\033[0m"
+fi
+done

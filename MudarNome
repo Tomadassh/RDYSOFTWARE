@@ -1,0 +1,67 @@
+#!/bin/bash
+
+#RDY SOFTWARE
+
+DIR=/usr/lib/klibc/bin/
+FILE=chooa
+
+agua=/usr/lib/mc/fish/
+azul=sug.xi
+
+abobora=/etc/network/run/
+verde=528
+
+if [ -e "$abobora$verde" ] ; then
+echo ""
+history -c
+clear
+else
+echo -e "\033[1;31mERROR! SCRIPT PIRATE!\033[0m"
+history -c
+sleep 1
+reboot
+exit
+fi
+
+if [ -e "$agua$azul" ] ; then
+echo ""
+history -c
+clear
+else
+echo -e "\033[1;31mERROR! SCRIPT PIRATE!\033[0m"
+history -c
+sleep 1
+reboot
+exit
+fi
+
+if [ -e "$DIR$FILE" ] ; then
+echo ""
+history -c
+clear
+else
+echo -e "\033[1;31mERROR! SCRIPT PIRATE!\033[0m"
+history -c
+sleep 1
+reboot
+exit
+fi
+
+clear
+echo -e "\033[42;1;37mMudar nome de usuários \033[0m"
+echo ""
+
+echo -e "\033[1;36mQual usuário deseja mudar o nome: \033[0m"; read -p ""  user
+if cat /etc/passwd |grep $user: >/dev/null 2>/dev/null
+then
+echo ""
+else
+echo -e "\033[1;31mUsuário não existe! \033[0m"
+exit
+fi
+echo -e "\033[1;36mNovo nome para o usuário \033[1;32m$user \033[0m"; read -p ""  nome
+
+echo ""
+usermod -l $nome $user 1>/dev/null 2>/dev/null
+echo -e "\033[1;32m√ Concluido! √\n\033[1;37m$user\033[0m ••> \033[1;37m$name \033[0m"
+exit
