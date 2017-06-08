@@ -53,7 +53,7 @@ echo ""
 echo -e "\033[1;31mUm momento...\033[0m"
 ping=$(ping -c1 google.com |awk '{print $8 $9}' |grep -v loss |cut -d = -f2 |sed ':a;N;s/\n//g;ta')
 echo ""
-echo "\033[1;36mPing: \033[1;32m$ping\033[0m"
+echo -e "\033[1;36mPing: \033[1;32m$ping\033[0m"
 velo=$(speedtest.py |grep load:)
 echo "$velo"
 
