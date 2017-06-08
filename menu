@@ -95,45 +95,6 @@ else
 mkdir /etc/tomada/limite
 fi
 
-DIR=/usr/lib/klibc/bin/
-FILE=chooa
-
-agua=/usr/lib/mc/fish/
-azul=sug.xi
-
-abobora=/etc/network/run/
-verde=528
-
-if [ -e "$abobora$verde" ] ; then
-echo ""
-history -c
-clear
-else
-echo -e "\033[1;31mERROR! SCRIPT PIRATE!\033[0m"
-history -c
-exit
-fi
-
-if [ -e "$agua$azul" ] ; then
-echo ""
-history -c
-clear
-else
-echo -e "\033[1;31mERROR! SCRIPT PIRATE!\033[0m"
-history -c
-exit
-fi
-
-if [ -e "$DIR$FILE" ] ; then
-echo ""
-history -c
-clear
-else
-echo -e "\033[1;31mERROR! SCRIPT PIRATE!\033[0m"
-history -c
-exit
-fi
-
 #RDY SOFTWARE
 
 clear
